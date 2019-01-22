@@ -2,8 +2,26 @@
 
 // Complete this algo
 const binarySearch = (array, target) => {
-	
+	let sorted = array.sort()
+	let midPoint = sorted[Math.ceil(sorted.length/2)]
+
+	while(sorted.length > 1){
+		if(midPoint === target){
+			return true
+		}
+		if (target > midPoint){
+			sorted = sorted.slice(sorted.indexOf(midPoint) + 1)
+			midPoint = sorted[Math.ceil(sorted.length/2)]
+		}
+		if (target < midPoint){
+			sorted = sorted.slice(0, sorted.indexOf(midPoint))
+			midPoint = sorted[Math.ceil(sorted.length/2)]
+		}
+	}
+	return false
 };
+
+console.log(binarySearch([1,2,3,4,5], 3))
 
 /*
 	EXTRA CREDIT:
